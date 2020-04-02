@@ -10,13 +10,14 @@ const cardimg =
   "https://cdn.dribbble.com/users/103909/screenshots/3690077/sensors-03.jpg";
 
 function RegisterMeeting(props) {
-
-  let host;
-  let name;
+  let loc =(window.location.search.substring(1, window.location.search.length)) 
+  
+  let name=(loc.replace("user=",""))
+  let host=(name.replace("%20"," "))
   function queryString (){
     let loc=window.location.search.substring(1, window.location.search.length);   
-    name=loc.replace("user="," ");
-    host = name.replace("%20"," ");
+    //name=loc.replace("user="," ");
+    //host = name.replace("%20"," ");
     //var name = document.getElementById("user");
     //alert("Olaaaaaaaa");
     //name.innerHTML = nickname.replace("%20"," ");
@@ -79,6 +80,7 @@ function RegisterMeeting(props) {
     });
 
     alert('Cadastrado com Sucesso');
+    //alert(name);
     window.location.replace("home?user="+name);
   };
   //TODO FAZER VALIDAÇÃO PARA QUANDO NÃO TIVER SALAS DISPONÍVEIS
