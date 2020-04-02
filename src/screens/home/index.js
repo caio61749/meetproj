@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./style.css";
 import CardMenu from "../../components/cardMenu";
 import CardBox from "../../components/cardBox";
+import FloatingButton from "../../components/floatingButton";
 
 const HomeScreen = props => {
   const [cardAll, setCardAll] = useState([]);
@@ -28,18 +29,20 @@ const HomeScreen = props => {
     var nickname=loc.replace("user="," ");
     var name = document.getElementById("user");
     //alert("Olaaaaaaaa");
-    name.innerHTML = nickname;
+    name.innerHTML = nickname.replace("%20"," ");
     //card.style="background-color:#F18080;"
   };
 
   return (
     <div id="HomeScreen"  onLoad={queryString} >
       <div id="card-menu" onLoad={queryString}>
+        
       <h1 id="card-welcome">
         <span>Olá, </span>
         <span id="user"></span>
       </h1>
       <div id="card-menu-buttons" />
+      
     </div>
       {cardAll.map((item, idx) => {
         return (
@@ -54,7 +57,9 @@ const HomeScreen = props => {
           />
         );
       })}
+      <FloatingButton/>
     </div>
+
   );
 };
 

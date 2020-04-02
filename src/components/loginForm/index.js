@@ -35,18 +35,21 @@ function LoginForm(props) {
     var nickinput = document.getElementById("user");
     
     {usersAll.map((item , idx) => {
-      
+      //alert(item.lenght);
         if(item.nick==nick&&item.password==password){
           alert("Bem-Vindo "+item.name+" !!!");
           window.location.replace("home?user="+item.name);
           //CardMenu.user="aaaa";
           //<Route component={HomeScreen} exact path="/home" />
         }else{
-          passwordinput.style = "background-color:#F18080;"
-          nickinput.style = "background-color:#F18080;"
+          //setTimeout(function(){ alert("Login Invalido"); }, 3000);
         }
         
     })}
+    
+    setTimeout(function(){ alert("Login Invalido"); }, 1000);
+    //passwordinput.style = "background-color:#F18080;"
+    //nickinput.style = "background-color:#F18080;"
   };
   
 

@@ -11,6 +11,19 @@ const cardimg =
 
 function RegisterMeeting(props) {
 
+  let host;
+  let name;
+  function queryString (){
+    let loc=window.location.search.substring(1, window.location.search.length);   
+    name=loc.replace("user="," ");
+    host = name.replace("%20"," ");
+    //var name = document.getElementById("user");
+    //alert("Olaaaaaaaa");
+    //name.innerHTML = nickname.replace("%20"," ");
+    //card.style="background-color:#F18080;"
+    //alert(host)
+    //alert(name);
+  };
 
   const [room, setRoom] = useState('')
   const [title, setTitle] = useState('')
@@ -57,7 +70,7 @@ function RegisterMeeting(props) {
       body: JSON.stringify({
         date: dateJson,
         endTime: secondHour,
-        host: "Eder Junior",
+        host: host,
         room: room,
         startTime: firstHour,
         status: "AVAILABLE",
@@ -66,7 +79,7 @@ function RegisterMeeting(props) {
     });
 
     alert('Cadastrado com Sucesso');
-
+    window.location.replace("home?user="+name);
   };
   //TODO FAZER VALIDAÇÃO PARA QUANDO NÃO TIVER SALAS DISPONÍVEIS
   useEffect(() => {
@@ -83,7 +96,7 @@ function RegisterMeeting(props) {
 
 
   return (
-    <div id="background">
+    <div id="background" onLoad={queryString}>
       <div id="card-filter">
         <div id="img-left">
           <img alt="card-img" draggable="false" id="card-img" src={cardimg} />
@@ -141,7 +154,7 @@ function RegisterMeeting(props) {
               />
             </div>
          
-           <Link id="btn-router-component-filter" to="/home">
+           
             <input
               onClick={() => postMeeting()}
               class="inputs"
@@ -150,7 +163,6 @@ function RegisterMeeting(props) {
               draggable="false"
               id="btnFilter"
             />
-          </Link>
           </form>
         </div>
       </div>
